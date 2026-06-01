@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital San José Bonaventure — Dr. Daniel</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050a12;--bg2:#080f1c;--bg3:#0c1628;--panel:#0a1422;--panel2:#0d1a2e;--border:#1a3050;--border2:#0f2035;--teal:#00c8d4;--teal2:#007a85;--navy:#1a3a6b;--red:#ff2d4a;--red2:#c01530;--yellow:#ffd600;--green:#00e676;--green2:#00a854;--white:#e8f4ff;--muted:#4a6d8c;--text:#b8d4f0;--glow:0 0 20px rgba(0,200,212,0.3);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,200,212,0.012) 2px,rgba(0,200,212,0.012) 4px);pointer-events:none;z-index:9997;}
+header{background:linear-gradient(90deg,var(--bg3),#0a1830,var(--bg3));border-bottom:1px solid var(--teal2);padding:8px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 30px rgba(0,200,212,0.15);flex-wrap:wrap;gap:6px;}
+.hlogo{display:flex;align-items:center;gap:10px;}
+.hlogo svg{width:36px;height:36px;flex-shrink:0;}
+.hmain{font-family:'Orbitron',monospace;font-size:11px;font-weight:900;color:var(--teal);letter-spacing:2px;text-shadow:var(--glow);}
+.hsub{font-size:9px;color:var(--muted);letter-spacing:1px;font-family:'Share Tech Mono',monospace;}
+.hcenter{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.shift-b{padding:4px 10px;border-radius:20px;font-size:10px;font-family:'Share Tech Mono',monospace;font-weight:700;letter-spacing:1px;}
+.shift-day{background:rgba(255,214,0,0.15);color:var(--yellow);border:1px solid var(--yellow);}
+.shift-night{background:rgba(0,200,212,0.15);color:var(--teal);border:1px solid var(--teal);}
+.wx-b{padding:4px 10px;border-radius:20px;font-size:11px;background:rgba(255,255,255,0.07);border:1px solid var(--border);}
+.hright{display:flex;align-items:center;gap:10px;}
+.clk{font-family:'Orbitron',monospace;font-size:16px;font-weight:700;color:var(--white);}
+.ldot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pg 1.5s infinite;box-shadow:0 0 8px var(--green);}
+@keyframes pg{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}
+.upill{display:flex;align-items:center;gap:8px;background:rgba(0,200,212,0.1);border:1px solid var(--teal2);border-radius:6px;padding:5px 12px;}
+.urole{font-size:9px;color:var(--teal);font-family:'Share Tech Mono',monospace;}
+.uname{font-size:12px;color:var(--white);font-weight:700;}
+.repb{font-family:'Orbitron',monospace;font-size:10px;color:var(--yellow);}
+.nb-bar{display:flex;background:var(--bg3);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;}
+.nb-bar::-webkit-scrollbar{display:none;}
+.nb{padding:9px 13px;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'Exo 2',sans-serif;font-size:11px;font-weight:600;letter-spacing:.5px;cursor:pointer;white-space:nowrap;transition:all .2s;text-transform:uppercase;}
+.nb:hover{color:var(--text);}
+.nb.active{color:var(--teal);border-bottom-color:var(--teal);background:rgba(0,200,212,0.05);}
+.wrap{padding:12px;max-width:1600px;margin:0 auto;}
+.sec{display:none;}.sec.active{display:block;}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:12px;}
+.card-hdr{padding:9px 14px;background:var(--panel2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.ct{font-family:'Orbitron',monospace;font-size:10px;font-weight:700;color:var(--teal);letter-spacing:2px;text-transform:uppercase;}
+.cb{padding:14px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px;}
+.gm{display:grid;grid-template-columns:2fr 1fr;gap:10px;}
+.sc{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent);}
+.sc.red::before{background:linear-gradient(90deg,var(--red),transparent);}
+.sc.green::before{background:linear-gradient(90deg,var(--green),transparent);}
+.sc.yellow::before{background:linear-gradient(90deg,var(--yellow),transparent);}
+.scl{font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;font-family:'Share Tech Mono',monospace;margin-bottom:6px;}
+.scv{font-family:'Orbitron',monospace;font-size:28px;font-weight:900;color:var(--white);line-height:1;}
+.scs{font-size:10px;color:var(--muted);margin-top:3px;}
+.sci{font-size:26px;position:absolute;right:14px;top:50%;transform:translateY(-50%);opacity:0.25;}
+.sb{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:20px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.sb.critico{background:rgba(255,45,74,0.15);color:var(--red);border:1px solid rgba(255,45,74,0.3);animation:br 1.5s infinite;}
+.sb.observacion{background:rgba(255,214,0,0.15);color:var(--yellow);border:1px solid rgba(255,214,0,0.3);}
+.sb.estable{background:rgba(0,230,118,0.15);color:var(--green);border:1px solid rgba(0,230,118,0.3);}
+@keyframes br{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.tbl{width:100%;border-collapse:collapse;font-size:11px;}
+.tbl th{padding:7px 10px;text-align:left;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border);}
+.tbl td{padding:8px 10px;border-bottom:1px solid var(--border2);vertical-align:middle;}
+.tbl tr:hover td{background:rgba(0,200,212,0.04);cursor:pointer;}
+.btn{padding:5px 12px;border-radius:5px;font-family:'Exo 2',sans-serif;font-size:10px;font-weight:600;cursor:pointer;border:1px solid;transition:all .2s;}
+.bt{background:rgba(0,200,212,0.15);border-color:var(--teal2);color:var(--teal);}
+.bt:hover{background:rgba(0,200,212,0.3);}
+.br{background:rgba(255,45,74,0.15);border-color:var(--red2);color:var(--red);}
+.bg{background:rgba(0,230,118,0.15);border-color:var(--green2);color:var(--green);}
+.by{background:rgba(255,214,0,0.15);border-color:var(--yellow);color:var(--yellow);}
+.pb{background:var(--border2);border-radius:4px;height:5px;overflow:hidden;margin-top:3px;}
+.pf{height:100%;border-radius:4px;transition:width 1s;}
+.pf.t{background:var(--teal)}.pf.r{background:var(--red)}.pf.g{background:var(--green)}.pf.y{background:var(--yellow)}
+.ci{background:var(--panel);border-radius:6px;padding:10px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;border-left:3px solid var(--border);cursor:pointer;transition:all .2s;animation:slin .4s ease;}
+.ci:hover{transform:translateX(4px);}
+.ci.p1{border-left-color:var(--red);background:rgba(255,45,74,0.05);}
+.ci.p2{border-left-color:var(--yellow);background:rgba(255,214,0,0.04);}
+.ci.p3{border-left-color:var(--teal);background:rgba(0,200,212,0.04);}
+.ci.p4{border-left-color:var(--muted);}
+@keyframes slin{from{transform:translateX(-16px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+.mo{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:500;align-items:center;justify-content:center;padding:16px;}
+.mo.active{display:flex;}
+.mbox{background:var(--bg3);border:1px solid var(--teal2);border-radius:12px;width:100%;max-width:480px;overflow:hidden;box-shadow:0 0 60px rgba(0,200,212,0.25);}
+.mhdr{background:var(--panel2);padding:14px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.mtitle{font-family:'Orbitron',monospace;font-size:12px;font-weight:700;color:var(--teal);letter-spacing:2px;}
+.mbody{padding:18px;}
+.dopt{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:8px;cursor:pointer;transition:all .2s;display:flex;align-items:flex-start;gap:10px;}
+.dopt:hover{border-color:var(--teal);background:rgba(0,200,212,0.08);}
+.donum{font-family:'Orbitron',monospace;font-size:16px;font-weight:900;color:var(--teal);min-width:24px;}
+.dotxt{font-size:12px;color:var(--white);line-height:1.5;}
+.dorisk{font-size:10px;color:var(--muted);margin-top:3px;}
+#cbo{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9998;align-items:center;justify-content:center;flex-direction:column;background:rgba(0,0,100,0.93);animation:cbf .6s infinite;}
+#cbo.active{display:flex;}
+@keyframes cbf{0%,100%{background:rgba(0,0,110,0.93);}50%{background:rgba(0,0,180,0.96);}}
+.cbmsg{font-family:'Orbitron',monospace;font-size:clamp(16px,4vw,32px);font-weight:900;color:#fff;letter-spacing:4px;text-align:center;animation:br .5s infinite;padding:0 20px;}
+.cbsub{font-family:'Share Tech Mono',monospace;font-size:clamp(11px,2vw,16px);color:#88aaff;margin-top:14px;text-align:center;padding:0 20px;letter-spacing:2px;}
+.cbt{background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:14px 20px;margin-top:20px;min-width:280px;}
+.cbm{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:12px;font-family:'Share Tech Mono',monospace;}
+.cbdis{margin-top:20px;padding:10px 28px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);border-radius:6px;color:#fff;font-family:'Orbitron',monospace;font-size:11px;cursor:pointer;letter-spacing:2px;}
+.nwrap{position:fixed;top:66px;right:12px;z-index:400;display:flex;flex-direction:column;gap:6px;max-width:300px;}
+.notif{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:6px;padding:9px 12px;font-size:11px;animation:nin .3s ease,nou .3s ease 4.7s forwards;box-shadow:0 4px 20px rgba(0,0,0,0.4);cursor:pointer;}
+.notif.urgent{border-left-color:var(--red);}
+.notif.warn{border-left-color:var(--yellow);}
+.notif.success{border-left-color:var(--green);}
+.ntit{font-weight:700;color:var(--white);margin-bottom:2px;}
+.nmsg{color:var(--muted);}
+@keyframes nin{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+@keyframes nou{from{transform:translateX(0);opacity:1;}to{transform:translateX(100%);opacity:0;}}
+.cms{height:320px;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.cmsg{display:flex;gap:8px;animation:slin .3s ease;}
+.cmsg.dan{flex-direction:row-reverse;}
+.cav{width:30px;height:30px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;border:1px solid var(--border);}
+.cbub{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:8px 12px;max-width:78%;}
+.cmsg.dan .cbub{background:rgba(0,200,212,0.1);border-color:var(--teal2);}
+.csen{font-size:9px;color:var(--teal);margin-bottom:2px;font-family:'Share Tech Mono',monospace;}
+.ctxt{font-size:11px;color:var(--text);line-height:1.5;}
+.ctm{font-size:9px;color:var(--muted);margin-top:3px;}
+.cro{display:flex;gap:6px;padding:8px 10px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.co{padding:5px 10px;background:rgba(0,200,212,0.1);border:1px solid var(--teal2);border-radius:4px;color:var(--teal);font-size:10px;cursor:pointer;font-family:'Share Tech Mono',monospace;transition:all .2s;}
+.co:hover{background:rgba(0,200,212,0.25);}
+.cir{display:flex;gap:8px;padding:10px;border-top:1px solid var(--border);}
+.cin{flex:1;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:7px 11px;color:var(--white);font-family:'Exo 2',sans-serif;font-size:11px;outline:none;}
+.cin:focus{border-color:var(--teal);}
+.csend{background:var(--teal2);border:none;border-radius:6px;padding:7px 13px;color:#fff;cursor:pointer;font-size:13px;}
+.bgd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;}
+.bcard{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:12px;text-align:center;}
+.btype{font-family:'Orbitron',monospace;font-size:18px;font-weight:900;color:var(--red);}
+.bunits{font-size:20px;font-weight:700;color:var(--white);margin:4px 0;}
+.ach-g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.ach{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;transition:all .3s;}
+.ach.un{border-color:var(--yellow);background:rgba(255,214,0,0.05);}
+.ach.lk{opacity:0.4;}
+.ai{font-size:28px;margin-bottom:6px;}
+.an{font-size:11px;font-weight:700;color:var(--white);margin-bottom:2px;}
+.ad{font-size:9px;color:var(--muted);}
+.adate{font-size:9px;color:var(--yellow);margin-top:4px;font-family:'Share Tech Mono',monospace;}
+.ni{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:10px 14px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;}
+.nt{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--teal);min-width:45px;margin-top:2px;}
+.ntx{font-size:11px;color:var(--text);line-height:1.5;}
+.stg{display:inline-block;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1px;font-family:'Share Tech Mono',monospace;margin-bottom:8px;}
+.stg.triste{background:rgba(255,45,74,0.15);color:var(--red);}
+.stg.feliz{background:rgba(0,230,118,0.15);color:var(--green);}
+.stg.normal{background:rgba(0,200,212,0.15);color:var(--teal);}
+.scard{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:10px;}
+.sname{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.sdet{font-size:11px;color:var(--muted);line-height:1.7;}
+.sr{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--panel);border:1px solid var(--border);border-radius:6px;margin-bottom:6px;transition:all .2s;}
+.sr:hover{border-color:var(--teal);}
+.sav{width:34px;height:34px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.sn{font-size:12px;font-weight:600;color:var(--white);}
+.sa{font-size:10px;color:var(--muted);font-family:'Share Tech Mono',monospace;}
+.sdd{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.sd-a{background:var(--green);box-shadow:0 0 6px var(--green);}
+.sd-b{background:var(--yellow);box-shadow:0 0 6px var(--yellow);}
+.sd-r{background:var(--muted);}
+.vc{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px;overflow:hidden;}
+canvas.wave{width:100%;height:55px;display:block;}
+.fb{display:flex;justify-content:space-between;align-items:center;}
+.fr{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.mb8{margin-bottom:8px;}.mb12{margin-bottom:12px;}
+.stitle{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.tag{display:inline-block;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1px;font-family:'Share Tech Mono',monospace;}
+.tag-r{background:rgba(255,45,74,0.15);color:var(--red);}
+.tag-y{background:rgba(255,214,0,0.15);color:var(--yellow);}
+.tag-g{background:rgba(0,230,118,0.15);color:var(--green);}
+.tag-t{background:rgba(0,200,212,0.15);color:var(--teal);}
+.tag-m{background:rgba(74,109,140,0.2);color:var(--muted);}
+.bc{background:rgba(0,230,118,0.06);border:1px solid rgba(0,230,118,0.25);border-radius:8px;padding:12px;margin-bottom:8px;}
+.abar{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.adots{display:flex;gap:5px;}
+.adot{width:11px;height:11px;border-radius:50%;background:var(--border);}
+.adot.v{background:var(--green);box-shadow:0 0 6px var(--green);}
+.adot.a{background:var(--yellow);box-shadow:0 0 6px var(--yellow);}
+.adot.r{background:var(--red);box-shadow:0 0 6px var(--red);animation:pg .8s infinite;}
+.heli{font-size:40px;animation:hh 2s ease-in-out infinite;}
+@keyframes hh{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.sandboxbtn{background:rgba(255,214,0,0.1);border:1px solid var(--yellow);color:var(--yellow);padding:10px 16px;border-radius:6px;font-family:'Orbitron',monospace;font-size:10px;cursor:pointer;letter-spacing:1px;transition:all .2s;width:100%;margin-bottom:8px;text-align:left;}
+.sandboxbtn:hover{background:rgba(255,214,0,0.25);}
+@media(max-width:768px){.g4{grid-template-columns:repeat(2,1fr);}.g3{grid-template-columns:1fr 1fr;}.gm{grid-template-columns:1fr;}.bgd{grid-template-columns:repeat(4,1fr);}.ach-g{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.g4,.g3,.g2{grid-template-columns:1fr 1fr;}.gm{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hlogo">
+    <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><rect x="13" y="2" width="10" height="32" rx="2" fill="#1a3a6b"/><rect x="2" y="13" width="32" height="10" rx="2" fill="#1a3a6b"/><path d="M18 7 C13 12,13 16,18 20 C23 24,23 28,18 34" stroke="#00c8d4" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg>
+    <div><div class="hmain">HOSPITAL SAN JOSÉ BONAVENTURE</div><div class="hsub">SISTEMA CENTRAL — DR. DANIEL, ADMINISTRADOR GENERAL</div></div>
+  </div>
+  <div class="hcenter">
+    <span class="shift-b shift-day" id="shift-badge">☀️ TURNO DIURNO</span>
+    <span class="wx-b" id="wx-badge">☀️ Despejado</span>
+    <span class="repb" id="rep-disp">⭐ Reputación: 94/100</span>
+  </div>
+  <div class="hright">
+    <div style="display:flex;align-items:center;gap:5px;"><div class="ldot"></div><span style="font-size:9px;font-family:'Share Tech Mono',monospace;color:var(--green);">EN VIVO</span></div>
+    <div><div class="clk" id="clk">--:--:--</div><div style="font-size:9px;color:var(--muted);font-family:'Share Tech Mono',monospace;" id="ddisp">---</div></div>
+    <div class="upill"><div><div class="urole">ADMINISTRADOR GENERAL</div><div class="uname">👑 Dr. Daniel</div></div></div>
+  </div>
+</header>
+<div class="nb-bar">
+  <button class="nb active" onclick="showSec('dashboard',this)">⊞ Dashboard</button>
+  <button class="nb" onclick="showSec('crisis',this)">🚨 Crisis</button>
+  <button class="nb" onclick="showSec('pacientes',this)">👥 Pacientes</button>
+  <button class="nb" onclick="showSec('personal',this)">👨‍⚕️ Personal</button>
+  <button class="nb" onclick="showSec('ambulancias',this)">🚑 Ambulancias</button>
+  <button class="nb" onclick="showSec('maternidad',this)">👶 Maternidad</button>
+  <button class="nb" onclick="showSec('sangre',this)">🩸 Sangre</button>
+  <button class="nb" onclick="showSec('monitores',this)">📈 Monitores</button>
+  <button class="nb" onclick="showSec('aliados',this)">🏥 Aliados</button>
+  <button class="nb" onclick="showSec('logros',this)">🎖️ Logros</button>
+  <button class="nb" onclick="showSec('periodico',this)">📰 Periódico</button>
+  <button class="nb" onclick="showSec('chat',this)">💬 Chat</button>
+  <button class="nb" onclick="showSec('sandbox',this)">🛠️ Sandbox</button>
+</div>
+<div class="wrap">
+<!-- DASHBOARD -->
+<div id="sec-dashboard" class="sec active">
+  <div class="abar">
+    <div class="adots"><div class="adot" id="adot-v"></div><div class="adot" id="adot-a"></div><div class="adot" id="adot-r"></div></div>
+    <div><div style="font-size:9px;color:var(--muted);font-family:'Share Tech Mono',monospace;letter-spacing:1px;">NIVEL DE ALERTA</div><div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;" id="alt-txt">⚠ ALERTA AMARILLA</div></div>
+    <div style="flex:1;"></div>
+    <span id="emp-mes-h" style="font-size:10px;color:var(--yellow);">🏆 Empleado del mes: Dr. Shaun Murphy</span>
+  </div>
+  <div class="g4">
+    <div class="sc"><div class="scl">Pacientes Activos</div><div class="scv" id="d-pac">0</div><div class="scs">En el hospital</div><div class="sci">👥</div></div>
+    <div class="sc red"><div class="scl">Casos Críticos</div><div class="scv" style="color:var(--red)" id="d-crit">0</div><div class="scs">Atención inmediata</div><div class="sci">🔴</div></div>
+    <div class="sc green"><div class="scl">Camas Libres</div><div class="scv" style="color:var(--green)" id="d-beds">0</div><div class="scs">de 120 totales</div><div class="sci">🛏️</div></div>
+    <div class="sc yellow"><div class="scl">Ambulancias</div><div class="scv" style="color:var(--teal)" id="d-amb">4/6</div><div class="scs">en servicio</div><div class="sci">🚑</div></div>
+  </div>
+  <div class="gm">
+    <div>
+      <div class="card mb12"><div class="card-hdr"><span class="ct">⚡ Casos Críticos</span><span style="font-size:9px;color:var(--red);">TIEMPO REAL</span></div><div style="padding:0;overflow-x:auto;"><table class="tbl"><thead><tr><th>Paciente</th><th>Diagnóstico</th><th>Estado</th><th>Sala</th><th></th></tr></thead><tbody id="dash-ct"></tbody></table></div></div>
+      <div class="card"><div class="card-hdr"><span class="ct">📊 Ocupación</span></div><div class="cb" id="occ-bars"></div></div>
+    </div>
+    <div>
+      <div class="card mb12"><div class="card-hdr"><span class="ct">🚑 Ambulancias</span></div><div class="cb" style="padding:8px;" id="dash-ambs"></div></div>
+      <div class="card mb12"><div class="card-hdr"><span class="ct">🩸 Sangre Crítica</span></div><div class="cb" style="padding:8px;" id="dash-blood"></div></div>
+      <div class="card"><div class="card-hdr"><span class="ct">👶 Nacimientos</span></div><div class="cb" style="padding:8px;" id="dash-births"></div></div>
+    </div>
+  </div>
+</div>
+<!-- CRISIS -->
+<div id="sec-crisis" class="sec">
+  <div class="fb mb12"><div class="stitle" style="margin-bottom:0;">🚨 PANTALLA DE CRISIS</div><div style="font-size:10px;color:var(--muted);">Selecciona un evento para gestionar</div></div>
+  <div class="gm"><div id="crisis-list"></div><div>
+    <div class="card mb12"><div class="card-hdr"><span class="ct">📋 Registro de Acciones</span></div><div class="cb" style="padding:8px;max-height:300px;overflow-y:auto;" id="alog"></div></div>
+    <div class="card"><div class="card-hdr"><span class="ct">📊 Hoy</span></div><div class="cb"><div class="g2"><div style="text-align:center;"><div style="font-family:'Orbitron',monospace;font-size:22px;font-weight:700;color:var(--teal);" id="st-ingr">0</div><div style="font-size:9px;color:var(--muted);">INGRESOS</div></div><div style="text-align:center;"><div style="font-family:'Orbitron',monospace;font-size:22px;font-weight:700;color:var(--green);" id="st-alta">0</div><div style="font-size:9px;color:var(--muted);">ALTAS</div></div><div style="text-align:center;"><div style="font-family:'Orbitron',monospace;font-size:22px;font-weight:700;color:var(--yellow);" id="st-cir">0</div><div style="font-size:9px;color:var(--muted);">CIRUGÍAS</div></div><div style="text-align:center;"><div style="font-family:'Orbitron',monospace;font-size:22px;font-weight:700;color:var(--red);" id="st-nac">0</div><div style="font-size:9px;color:var(--muted);">NACIMIENTOS</div></div></div></div></div>
+  </div></div>
+</div>
+<!-- PACIENTES -->
+<div id="sec-pacientes" class="sec">
+  <div class="stitle">👥 GESTIÓN DE PACIENTES</div>
+  <div class="card"><div class="card-hdr"><span class="ct">Lista de Pacientes</span><span style="font-size:9px;color:var(--muted);">Total: <span id="total-pac" style="color:var(--white);">0</span></span></div><div style="overflow-x:auto;"><table class="tbl"><thead><tr><th>ID</th><th>Nombre</th><th>Edad</th><th>Diagnóstico</th><th>Estado</th><th>Sala</th><th>Doctor</th><th>😊</th><th></th></tr></thead><tbody id="full-pact"></tbody></table></div></div>
+</div>
+<!-- PERSONAL -->
+<div id="sec-personal" class="sec">
+  <div class="stitle">👨‍⚕️ GESTIÓN DE PERSONAL</div>
+  <div class="gm"><div id="staff-full"></div><div>
+    <div class="card mb12"><div class="card-hdr"><span class="ct">🏆 Empleado del Mes</span></div><div class="cb" id="emp-panel"></div></div>
+    <div class="card"><div class="card-hdr"><span class="ct">📊 Por Área</span></div><div class="cb" id="staff-areas"></div></div>
+  </div></div>
+</div>
+<!-- AMBULANCIAS -->
+<div id="sec-ambulancias" class="sec"><div class="stitle">🚑 AMBULANCIAS</div><div class="g2" id="amb-full"></div></div>
+<!-- MATERNIDAD -->
+<div id="sec-maternidad" class="sec">
+  <div class="stitle">👶 MATERNIDAD</div>
+  <div class="gm"><div>
+    <div class="card mb12"><div class="card-hdr"><span class="ct">🍼 Nacimientos</span><span style="font-size:9px;color:var(--green);" id="birth-c">0</span></div><div class="cb" style="padding:8px;" id="birth-list"></div></div>
+  </div><div>
+    <div class="card mb12"><div class="card-hdr"><span class="ct">📊 Estadísticas</span></div><div class="cb"><div class="fb mb8"><span style="font-size:11px;">Normales</span><span id="bn" style="color:var(--green)">0</span></div><div class="fb mb8"><span style="font-size:11px;">Emergencias</span><span id="be" style="color:var(--red)">0</span></div><div class="fb"><span style="font-size:11px;">Bebés sanos</span><span id="bh" style="color:var(--teal)">0</span></div></div></div>
+    <div class="card"><div class="card-hdr"><span class="ct">👩‍⚕️ Equipo</span></div><div class="cb" style="font-size:11px;line-height:2.2;"><div>🩺 Dra. Elena Mendoza</div><div>👩‍⚕️ Enf. Patricia Lima</div><div>👶 Dr. Carlos Nieto</div></div></div>
+  </div></div>
+</div>
+<!-- SANGRE -->
+<div id="sec-sangre" class="sec"><div class="stitle">🩸 BANCO DE SANGRE</div><div class="bgd" id="blood-g"></div><div class="card"><div class="card-hdr"><span class="ct">Transfusiones Hoy</span></div><div class="cb" style="padding:8px;" id="tlog"></div></div></div>
+<!-- MONITORES -->
+<div id="sec-monitores" class="sec">
+  <div class="stitle">📈 MONITORES</div>
+  <div class="mb12"><label style="font-size:11px;color:var(--muted);margin-right:8px;">Paciente:</label><select id="mon-sel" onchange="updateMon()" style="background:var(--panel);border:1px solid var(--border);color:var(--white);padding:5px 10px;border-radius:4px;font-family:'Exo 2',sans-serif;font-size:11px;outline:none;"></select></div>
+  <div class="g2">
+    <div class="vc mb12"><div class="fb mb8"><span style="font-size:9px;color:var(--muted);font-family:'Share Tech Mono',monospace;letter-spacing:2px;">❤️ FREC. CARDÍACA</span><span style="font-family:'Orbitron',monospace;font-size:24px;font-weight:900;color:var(--green);" id="m-hr">72</span><span style="font-size:10px;color:var(--muted);">bpm</span></div><canvas class="wave" id="w-hr"></canvas></div>
+    <div class="vc mb12"><div class="fb mb8"><span style="font-size:9px;color:var(--muted);font-family:'Share Tech Mono',monospace;letter-spacing:2px;">🫁 SAT. O₂</span><span style="font-family:'Orbitron',monospace;font-size:24px;font-weight:900;color:var(--teal);" id="m-spo2">98</span><span style="font-size:10px;color:var(--muted);">%</span></div><canvas class="wave" id="w-spo2"></canvas></div>
+    <div class="vc"><div class="fb mb8"><span style="font-size:9px;color:var(--muted);font-family:'Share Tech Mono',monospace;letter-spacing:2px;">🩸 PRESIÓN ART.</span><span style="font-family:'Orbitron',monospace;font-size:22px;font-weight:900;color:var(--yellow);" id="m-bp">120/80</span><span style="font-size:10px;color:var(--muted);">mmHg</span></div><canvas class="wave" id="w-bp"></canvas></div>
+    <div class="vc"><div class="fb mb8"><span style="font-size:9px;color:var(--muted);font-family:'Share Tech Mono',monospace;letter-spacing:2px;">🌡️ TEMPERATURA</span><span style="font-family:'Orbitron',monospace;font-size:24px;font-weight:900;color:var(--red);" id="m-temp">36.8</span><span style="font-size:10px;color:var(--muted);">°C</span></div><canvas class="wave" id="w-temp"></canvas></div>
+  </div>
+</div>
+<!-- ALIADOS -->
+<div id="sec-aliados" class="sec"><div class="stitle">🏥 HOSPITALES ALIADOS</div><div id="ally-list"></div><div class="card"><div class="card-hdr"><span class="ct">🚑 Traslados</span></div><div class="cb" style="padding:8px;" id="translog"></div></div></div>
+<!-- LOGROS -->
+<div id="sec-logros" class="sec"><div class="stitle">🎖️ VITRINA DE LOGROS</div><div class="ach-g" id="ach-g"></div></div>
+<!-- PERIÓDICO -->
+<div id="sec-periodico" class="sec"><div class="fb mb12"><div class="stitle" style="margin-bottom:0;">📰 PERIÓDICO</div><div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);" id="paper-date">HOY</div></div><div id="news-list"></div></div>
+<!-- CHAT -->
+<div id="sec-chat" class="sec">
+  <div class="stitle">💬 COMUNICACIONES</div>
+  <div class="gm">
+    <div class="card">
+      <div class="card-hdr"><span class="ct">💬 Canal Hospital</span><span style="font-size:9px;color:var(--green);">● EN VIVO</span></div>
+      <div class="cms" id="chat-msgs"></div>
+      <div class="cro" id="chat-opts"></div>
+      <div class="cir"><input class="cin" id="chat-in" placeholder="Mensaje como Dr. Daniel..."/><button class="csend" onclick="sendMsg()">➤</button></div>
+    </div>
+    <div>
+      <div class="card mb12"><div class="card-hdr"><span class="ct">👥 En Turno</span></div><div class="cb" style="padding:8px;max-height:280px;overflow-y:auto;" id="on-duty"></div></div>
+      <div class="card"><div class="card-hdr"><span class="ct">📞 Llamadas</span></div><div class="cb" style="padding:8px;max-height:200px;overflow-y:auto;" id="call-log"></div></div>
+    </div>
+  </div>
+</div>
+<!-- SANDBOX -->
+<div id="sec-sandbox" class="sec">
+  <div class="stitle">🛠️ MODO SANDBOX</div>
+  <div class="g2">
+    <div class="card"><div class="card-hdr"><span class="ct">⚡ Forzar Eventos</span></div><div class="cb">
+      <button class="sandboxbtn" onclick="sbEvent('code_blue')">🚨 Activar Código Azul</button>
+      <button class="sandboxbtn" onclick="sbEvent('mass')">💥 Accidente Masivo (10 pacientes)</button>
+      <button class="sandboxbtn" onclick="sbEvent('birth')">👶 Forzar Nacimiento</button>
+      <button class="sandboxbtn" onclick="sbEvent('newpac')">🏥 Nuevo Paciente Emergencia</button>
+      <button class="sandboxbtn" onclick="sbEvent('blood')">🩸 Sangre O- Crítica</button>
+      <button class="sandboxbtn" onclick="sbEvent('vip')">👑 Paciente VIP</button>
+      <button class="sandboxbtn" onclick="sbEvent('storm')">⛈️ Clima: Tormenta</button>
+      <button class="sandboxbtn" onclick="sbEvent('ally')">🏥 Solicitud Hospital Aliado</button>
+    </div></div>
+    <div class="card"><div class="card-hdr"><span class="ct">⏰ Control de Tiempo</span></div><div class="cb">
+      <button class="sandboxbtn" onclick="simSh('day')">☀️ Simular Turno Diurno</button>
+      <button class="sandboxbtn" onclick="simSh('night')">🌙 Simular Turno Nocturno</button>
+      <button class="sandboxbtn" onclick="simSh('real')">🕐 Volver a Hora Real</button>
+      <div style="margin-top:12px;font-size:10px;color:var(--muted);">Guardado automático en localStorage.</div>
+      <button class="sandboxbtn" onclick="clearSv()" style="border-color:var(--red);color:var(--red);background:rgba(255,45,74,0.08);margin-top:8px;">🗑️ Borrar partida</button>
+    </div></div>
+  </div>
+</div>
+</div><!-- end wrap -->
+<!-- CODE BLUE OVERLAY -->
+<div id="cbo">
+  <div style="font-size:60px;animation:hh .5s infinite;">🚨</div>
+  <div class="cbmsg">⚠ CÓDIGO AZUL ACTIVADO ⚠</div>
+  <div class="cbsub" id="cb-loc">PARO CARDIORRESPIRATORIO — EQUIPO INMEDIATO</div>
+  <div class="cbt" id="cb-team"></div>
+  <div style="display:flex;gap:10px;margin-top:16px;">
+    <button class="cbdis" onclick="deactCB()">✓ DESACTIVAR</button>
+    <button class="cbdis" onclick="cbSupport()" style="border-color:var(--yellow);color:var(--yellow);">+ APOYO EXTRA</button>
+  </div>
+</div>
+<!-- DECISION MODAL -->
+<div id="dec-mo" class="mo"><div class="mbox"><div class="mhdr"><span class="mtitle" id="dec-title">DECISIÓN</span><button onclick="closeDec()" style="background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;">✕</button></div><div class="mbody" id="dec-body"></div></div></div>
+<!-- PATIENT MODAL -->
+<div id="pac-mo" class="mo"><div class="mbox" style="max-width:520px;"><div class="mhdr"><span class="mtitle">📋 EXPEDIENTE</span><button onclick="closePM()" style="background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;">✕</button></div><div class="mbody" id="pac-body"></div></div></div>
+<!-- NOTIF -->
+<div class="nwrap" id="nwrap"></div>
+<script>
+// ========== STATE ==========
+const state = {
+  patients: [],
+  staff: [],
+  ambulances: [],
+  blood: { 'O+': 45, 'O-': 8, 'A+': 32, 'A-': 5, 'B+': 28, 'B-': 4, 'AB+': 12, 'AB-': 2 },
+  births: [],
+  messages: [],
+  crisisLog: [],
+  news: [],
+  achievements: [],
+  stats: { admissions: 0, discharges: 0, surgeries: 0, births: 0 },
+  alerts: 'yellow',
+  shift: 'day',
+  codeBlue: false,
+  waveT: 0,
+  waveAF: null,
+  pendingDecision: null,
+  chatOpts: [],
+  reputation: 94,
+  simShift: 'real'
+};
+
+const ALLY_HOSPITALS = ['Hospital San Francisco','Centro de Salud','Hospital San Juan','Hospital Santo Domingo','Hospital DT GT'];
+const DIAGNOSES = ['Trauma craneoencefálico','Infarto agudo de miocardio','Neumonía bilateral','Apendicitis aguda','Fractura de cadera','Crisis asmática','ACV isquémico','Sepsis','Fractura tibial','Gastroenteritis severa','Contusión torácica','Politraumatismo','Insuficiencia cardíaca','Cetoacidosis diabética','Quemaduras graves'];
+const NAMES = ['Juan García','María López','Carlos Torres','Rosa Mendoza','Luis Pérez','Ana Silva','Miguel Ruiz','Elena Castro','Diego Morales','Sofía Vargas','Andrés Lima','Carmen Díaz','Roberto Núñez','Patricia Vega','Héctor Jiménez'];
+const BABY_NAMES = ['Valentina','Sebastián','Emilia','Mateo','Isabella','Santiago','Camila','Diego','Sofía','Alejandro'];
+const WEATHERS = ['☀️ Despejado','🌧️ Lluvia','⛈️ Tormenta','🌫️ Niebla'];
+const ADVISORS = [
+  {id:'shaun', name:'Dr. Shaun Murphy', icon:'🩺', role:'Diagnóstico Élite'},
+  {id:'andrews', name:'Dr. Marcus Andrews', icon:'🔬', role:'Cirujano Jefe'},
+  {id:'braun', name:'Dra. Audrey Braun', icon:'🏥', role:'Cirujana Trauma'},
+];
+
+let pidCounter = 1000;
+
+// ========== INIT ==========
+function init() {
+  loadState();
+  if (!state.patients.length) genPatients();
+  if (!state.staff.length) genStaff();
+  if (!state.ambulances.length) genAmbulances();
+  if (!state.births.length) genBirths();
+  if (!state.news.length) genNews();
+  if (!state.achievements.length) genAchievements();
+  if (!state.messages.length) seedChat();
+
+  updateClock();
+  updateHeader();
+  updateDashboard();
+  updateChat();
+  renderCrisis();
+  initWaves();
+
+  setInterval(updateClock, 1000);
+  setInterval(liveSimulation, 5000);
+  setInterval(() => { state.waveT += 0.15; animWaves(); }, 50);
+  setInterval(saveState, 8000);
+  setInterval(autoChatMsg, 20000);
+
+  notify('✅ Sistema iniciado — Hospital San José Bonaventure', 'success');
+  setTimeout(() => notify('👑 Bienvenido Dr. Daniel — Tienes el control total', ''), 1500);
+}
+
+// ========== SAVE / LOAD ==========
+function saveState() {
+  try {
+    const toSave = {
+      patients: state.patients.slice(-60),
+      blood: state.blood, births: state.births.slice(-20),
+      news: state.news.slice(-30), stats: state.stats,
+      achievements: state.achievements, reputation: state.reputation,
+      messages: state.messages.slice(-40)
+    };
+    localStorage.setItem('hospitalState', JSON.stringify(toSave));
+  } catch(e) {}
+}
+function loadState() {
+  try {
+    const d = JSON.parse(localStorage.getItem('hospitalState') || 'null');
+    if (d) {
+      if (d.patients && d.patients.length) state.patients = d.patients;
+      if (d.blood) state.blood = d.blood;
+      if (d.births && d.births.length) state.births = d.births;
+      if (d.news && d.news.length) state.news = d.news;
+      if (d.stats) state.stats = d.stats;
+      if (d.achievements && d.achievements.length) state.achievements = d.achievements;
+      if (d.reputation) state.reputation = d.reputation;
+      if (d.messages && d.messages.length) state.messages = d.messages;
+    }
+  } catch(e) {}
+}
+function clearSv() {
+  if (confirm('¿Borrar toda la partida guardada?')) {
+    localStorage.removeItem('hospitalState');
+    location.reload();
+  }
+}
+
+// ========== DATA GENERATION ==========
+function genPatients() {
+  state.patients = [];
+  for (let i = 0; i < 12; i++) {
+    state.patients.push(makePatient());
+  }
+}
+function makePatient() {
+  const statuses = ['crítico','crítico','observación','observación','estable','estable'];
+  return {
+    id: 'P' + (pidCounter++),
+    name: NAMES[Math.floor(Math.random() * NAMES.length)],
+    age: 15 + Math.floor(Math.random() * 65),
+    diagnosis: DIAGNOSES[Math.floor(Math.random() * DIAGNOSES.length)],
+    status: statuses[Math.floor(Math.random() * statuses.length)],
+    room: ['Emergencias','UCI','Hospitalización','Pediatría','Cardiología'][Math.floor(Math.random()*5)] + '-' + String(Math.floor(Math.random()*20)+1).padStart(2,'0'),
+    doctor: ['Dr. Shaun Murphy','Dr. Andrews','Dra. Braun','Dr. García','Dra. Mendoza'][Math.floor(Math.random()*5)],
+    mood: ['😊','😐','😞','😠'][Math.floor(Math.random()*4)],
+    satisfaction: 40 + Math.floor(Math.random() * 60),
+    hr: 55 + Math.floor(Math.random() * 60),
+    spo2: 88 + Math.floor(Math.random() * 12),
+    bp: (100 + Math.floor(Math.random()*60)) + '/' + (60 + Math.floor(Math.random()*30)),
+    temp: (36 + Math.random() * 2).toFixed(1),
+    admitTime: tNow()
+  };
+}
+
+function genStaff() {
+  state.staff = [
+    { name: 'Dr. Shaun Murphy', role: 'Diagnóstico Élite', area: 'UCI', status: 'Disponible', icon: '🩺' },
+    { name: 'Dr. Marcus Andrews', role: 'Cirujano Jefe', area: 'Quirófano 1', status: 'Disponible', icon: '🔬' },
+    { name: 'Dra. Audrey Braun', role: 'Cirujana Trauma', area: 'Emergencias', status: 'Disponible', icon: '🏥' },
+    { name: 'Dr. Carlos Martínez', role: 'Médico Emergencias', area: 'Emergencias', status: 'Atendiendo paciente', icon: '👨‍⚕️' },
+    { name: 'Dra. Ana Sánchez', role: 'Intensivista', area: 'UCI', status: 'En ronda', icon: '👩‍⚕️' },
+    { name: 'Dr. Luis López', role: 'Cardiólogo', area: 'Cardiología', status: 'Disponible', icon: '❤️' },
+    { name: 'Dr. Raúl Torres', role: 'Cirujano', area: 'Quirófano 2', status: 'En cirugía', icon: '🔬' },
+    { name: 'Dra. Mónica Vega', role: 'Pediatra', area: 'Pediatría', status: 'Disponible', icon: '👶' },
+    { name: 'Dra. Elena Mendoza', role: 'Ginecóloga', area: 'Maternidad', status: 'Disponible', icon: '👩‍⚕️' },
+    { name: 'Dr. Pablo Herrera', role: 'Traumatólogo', area: 'Hospitalización', status: 'Revisando análisis', icon: '🦴' },
+    { name: 'Dra. Carmen Ruiz', role: 'Anestesióloga', area: 'Quirófano 1', status: 'En cirugía', icon: '💉' },
+    { name: 'Enf. García', role: 'Enfermera Jefe', area: 'UCI', status: 'Disponible', icon: '👩‍⚕️' },
+    { name: 'Enf. Jiménez', role: 'Enfermero UCI', area: 'UCI', status: 'Atendiendo paciente', icon: '🧑‍⚕️' },
+    { name: 'Enf. Patricia Lima', role: 'Matrona', area: 'Maternidad', status: 'Disponible', icon: '👩‍⚕️' },
+    { name: 'Enf. Roberto Cruz', role: 'Enf. Emergencias', area: 'Emergencias', status: 'En urgencias', icon: '🧑‍⚕️' },
+  ];
+}
+
+function genAmbulances() {
+  state.ambulances = [
+    { id: 'AMB-01', status: 'en_ruta', location: 'Av. Principal km 3', crew: 'Eduardo Ramírez' },
+    { id: 'AMB-02', status: 'disponible', location: 'Base Hospital', crew: 'Carmen Vega' },
+    { id: 'AMB-03', status: 'en_ruta', location: 'Zona Norte', crew: 'Luis Moreno' },
+    { id: 'AMB-04', status: 'disponible', location: 'Base Hospital', crew: 'Sandra Torres' },
+    { id: 'AMB-05', status: 'mantenimiento', location: 'Garaje', crew: 'Pedro Alonso' },
+    { id: 'AMB-06', status: 'disponible', location: 'Base Hospital', crew: 'Marta Quirós' }
+  ];
+}
+
+function genBirths() {
+  state.births = [
+    { id: 'B001', baby: 'Valentina', mother: 'Ana García', date: '09:30', weight: '3.2 kg', status: 'Normal', health: 'Sana y vigorosa' },
+    { id: 'B002', baby: 'Mateo', mother: 'Rosa López', date: '14:15', weight: '3.5 kg', status: 'Normal', health: 'Sano y vigoroso' }
+  ];
+  state.stats.births = 2;
+}
+
+function genNews() {
+  state.news = [
+    { text: '🏥 Hospital San José Bonaventure abre nuevo pabellón de emergencias.', time: tNow() },
+    { text: '🏆 Dr. Shaun Murphy reconocido como mejor diagnosticador del año.', time: tNow() },
+    { text: '🔬 Dr. Andrews completa cirugía cardíaca de alta complejidad con éxito.', time: tNow() },
+    { text: '👶 Se registraron 2 nacimientos durante la última guardia.', time: tNow() },
+  ];
+}
+
+function genAchievements() {
+  state.achievements = [
+    { icon: '🌟', name: 'Centenar de Vidas', desc: '100 pacientes atendidos', unlocked: false },
+    { icon: '🔬', name: 'Manos de Oro', desc: '50 cirugías exitosas', unlocked: false },
+    { icon: '💙', name: 'Guardián del Ritmo', desc: '25 Códigos Azules resueltos', unlocked: false },
+    { icon: '🚪', name: 'Liberador', desc: '100 altas médicas', unlocked: false },
+    { icon: '👶', name: 'Sala de Partos', desc: '50 nacimientos registrados', unlocked: false },
+    { icon: '🏆', name: 'Hospital de Excelencia', desc: 'Reputación 100/100', unlocked: state.reputation >= 100 },
+    { icon: '⭐', name: 'Primera Cirugía', desc: 'Primera cirugía completada', unlocked: true, date: '05/01/2025' },
+    { icon: '🍼', name: 'Milagro de Vida', desc: '5 nacimientos asistidos', unlocked: true, date: '15/03/2025' },
+  ];
+}
+
+function seedChat() {
+  state.messages = [
+    { sender: 'Dr. Shaun Murphy', icon: '🩺', role: 'Diagnóstico Élite', text: 'Buenos días Dr. Daniel. UCI al 88% de ocupación. Tres pacientes requieren evaluación urgente.', time: tNow() },
+    { sender: 'Dr. Marcus Andrews', icon: '🔬', role: 'Cirujano Jefe', text: 'Dr. Daniel, dos cirugías programadas esta mañana. Quirófanos 1 y 2 listos.', time: tNow() },
+    { sender: 'Dra. Audrey Braun', icon: '🏥', role: 'Cirujana Trauma', text: 'Llegaron dos pacientes de accidente de tránsito. Los evalúo en emergencias.', time: tNow() },
+  ];
+}
+
+// ========== LIVE SIMULATION ==========
+let simTick = 0;
+function liveSimulation() {
+  simTick++;
+  const isNight = isNightShift();
+  const chance = isNight ? 0.45 : 0.25;
+
+  // New random patient
+  if (Math.random() < chance && state.patients.length < 80) {
+    const p = makePatient();
+    state.patients.unshift(p);
+    state.stats.admissions++;
+    addNews('🏥 Nuevo ingreso: ' + p.name + ' — ' + p.diagnosis + ' — ' + p.status);
+    notify('🚑 Nuevo paciente: ' + p.name, 'urgent');
+    triggerDecisionModal(p);
+  }
+
+  // Status changes
+  if (state.patients.length && Math.random() < 0.35) {
+    const p = state.patients[Math.floor(Math.random() * state.patients.length)];
+    const old = p.status;
+    const roll = Math.random();
+    if (roll < 0.25 && p.status !== 'estable') { p.status = 'estable'; addNews('📈 Mejoría: ' + p.name + ' pasa a estado estable.'); }
+    else if (roll < 0.45 && p.status !== 'crítico') { p.status = 'crítico'; addNews('🔴 Deterioro: ' + p.name + ' en estado crítico.'); notify('🔴 Paciente crítico: ' + p.name, 'urgent'); }
+    else if (roll < 0.15) { dischargePatient(p); }
+  }
+
+  // Ambulance cycle
+  state.ambulances.forEach(a => {
+    if (a.status === 'disponible' && Math.random() < 0.12) {
+      a.status = 'en_ruta';
+      a.location = 'Zona ' + ['Norte','Sur','Centro','Este'][Math.floor(Math.random()*4)];
+      addNews('🚑 ' + a.id + ' despachada.');
+      setTimeout(() => {
+        a.status = 'disponible'; a.location = 'Base Hospital';
+        updateAmbulances();
+      }, 15000 + Math.random() * 10000);
+    }
+  });
+
+  // Blood fluctuation
+  Object.keys(state.blood).forEach(bt => {
+    state.blood[bt] = Math.max(2, state.blood[bt] + (Math.random() > 0.5 ? 1 : -1));
+    if (state.blood[bt] < 7) notify('🩸 Sangre ' + bt + ' crítica: solo ' + state.blood[bt] + ' U', 'urgent');
+  });
+
+  // Random birth
+  if (Math.random() < 0.06) addBirth();
+
+  // Random code blue
+  if (!state.codeBlue && Math.random() < (isNight ? 0.04 : 0.015)) {
+    const rooms = ['UCI-03','Emergencias-07','Hospitalización-12','Cardiología-05'];
+    activateCB(rooms[Math.floor(Math.random() * rooms.length)]);
+  }
+
+  // Staff movement
+  if (simTick % 3 === 0 && state.staff.length) {
+    const s = state.staff[Math.floor(Math.random() * state.staff.length)];
+    const areas = ['Emergencias','UCI','Quirófano 1','Radiología','Hospitalización','Pediatría'];
+    const acts = ['Atendiendo paciente','Revisando análisis','Disponible','En ronda','Trasladando paciente'];
+    s.area = areas[Math.floor(Math.random() * areas.length)];
+    s.status = acts[Math.floor(Math.random() * acts.length)];
+  }
+
+  // Advisor auto-action
+  if (simTick % 6 === 0) advisorAutoAction();
+
+  // Ally hospital
+  if (simTick % 12 === 0 && Math.random() < 0.5) allyRequest();
+
+  // Update vitals slightly
+  state.patients.forEach(p => {
+    p.hr = Math.max(40, Math.min(180, p.hr + (Math.random() > 0.5 ? 1 : -1) * Math.floor(Math.random() * 3)));
+    p.spo2 = Math.max(80, Math.min(100, p.spo2 + (Math.random() > 0.6 ? 1 : -1)));
+    p.temp = Math.max(35, Math.min(42, parseFloat(p.temp) + (Math.random() > 0.7 ? 0.1 : -0.1))).toFixed(1);
+  });
+
+  // Stats counters UI
+  document.getElementById('st-ingr').textContent = state.stats.admissions;
+  document.getElementById('st-alta').textContent = state.stats.discharges;
+  document.getElementById('st-cir').textContent = state.stats.surgeries;
+  document.getElementById('st-nac').textContent = state.stats.births;
+
+  updateHeader();
+  updateDashboard();
+  renderCrisis();
+  updateAmbulances();
+  updateBancoSangre();
+  updateMaternidad();
+  if (document.getElementById('sec-periodico').classList.contains('active')) updatePeriodico();
+  if (document.getElementById('sec-pacientes').classList.contains('active')) updatePacientes();
+  if (document.getElementById('sec-personal').classList.contains('active')) updatePersonal();
+}
+
+function advisorAutoAction() {
+  const actions = [
+    { adv: 'Dr. Marcus Andrews', msg: 'He reorganizado el personal de Emergencias para optimizar tiempos de respuesta.' },
+    { adv: 'Dr. Shaun Murphy', msg: 'Acabo de detectar un caso inusual en UCI. Necesito su autorización para biopsia urgente.' },
+    { adv: 'Dra. Audrey Braun', msg: 'Habilitando sala temporal. Flujo de emergencias por encima de lo normal esta hora.' },
+    { adv: 'Dr. Marcus Andrews', msg: `Dr. Daniel, UCI al ${Math.floor(70 + Math.random()*25)}%. ¿Habilitamos camas adicionales?` },
+    { adv: 'Dr. Shaun Murphy', msg: 'Cirugía de ' + (state.patients[0]?.name || 'paciente') + ' completada exitosamente.' },
+  ];
+  const a = actions[Math.floor(Math.random() * actions.length)];
+  const adv = ADVISORS.find(x => x.name === a.adv) || ADVISORS[0];
+  addChatMsg(adv.name, adv.icon, adv.role, a.msg);
+  notify('🔔 ' + adv.name + ': ' + a.msg.substring(0, 50) + '...', '');
+  addNews('🔔 ' + adv.name + ': ' + a.msg);
+}
+
+function allyRequest() {
+  const ally = ALLY_HOSPITALS[Math.floor(Math.random() * ALLY_HOSPITALS.length)];
+  const reqs = ['solicita una cama UCI','transfiere un paciente crítico','solicita especialista de Cardiología','requiere sangre O-','envía 2 pacientes de accidente'];
+  const req = reqs[Math.floor(Math.random() * reqs.length)];
+  addNews('🏥 ' + ally + ' ' + req + '.');
+  notify('🏥 ' + ally + ': ' + req, 'warn');
+  addChatMsg('Dr. Marcus Andrews', '🔬', 'Cirujano Jefe', ally + ' ' + req + '. ¿Cómo procedemos, Dr. Daniel?');
+  state.chatOpts = ['✅ Aceptar solicitud','❌ Declinar por recursos','🤝 Aceptar con condiciones'];
+  renderChatOpts();
+}
+
+// ========== BIRTHS ==========
+function addBirth(emergency = false) {
+  const mothers = ['Gloria Pérez','Marina Torres','Rosa Gómez','Ana López','Carmen Silva'];
+  const b = {
+    id: 'B' + Date.now(),
+    baby: BABY_NAMES[Math.floor(Math.random() * BABY_NAMES.length)],
+    mother: mothers[Math.floor(Math.random() * mothers.length)],
+    date: tNow(),
+    weight: (2.5 + Math.random() * 2).toFixed(2) + ' kg',
+    status: emergency ? 'Emergencia' : 'Normal',
+    health: Math.random() > 0.05 ? 'Sano y vigoroso' : 'Requiere observación'
+  };
+  state.births.unshift(b);
+  state.stats.births++;
+  addNews((emergency ? '⚠️' : '👶') + ' Nacimiento: ' + b.baby + ' — Madre: ' + b.mother + ' — ' + b.weight);
+  notify((emergency ? '⚠️ PARTO DE EMERGENCIA' : '👶 Nuevo nacimiento') + ': ' + b.baby + ' — ' + b.health, emergency ? 'urgent' : 'success');
+  addChatMsg('Dra. Elena Mendoza', '👩‍⚕️', 'Ginecóloga', '¡Parto exitoso! ' + b.mother + ' dio a luz a ' + b.baby + ' (' + b.weight + '). ' + b.health);
+  updateMaternidad();
+}
+
+// ========== CODE BLUE ==========
+function activateCB(location) {
+  if (state.codeBlue) return;
+  state.codeBlue = true;
+  document.getElementById('cbo').classList.add('active');
+  document.getElementById('cb-loc').textContent = 'PARO CARDIORRESPIRATORIO — ' + (location || 'UCI-03');
+  const team = state.staff.slice(0, 5).map(s =>
+    `<div class="cbm"><span style="color:var(--green);">✅</span> ${s.name} — ${s.role} <span style="color:var(--yellow);margin-left:auto;">${Math.floor(Math.random()*3)+1}:${String(Math.floor(Math.random()*59)).padStart(2,'0')}</span></div>`
+  ).join('');
+  document.getElementById('cb-team').innerHTML = team;
+  playCBAlarm();
+  addNews('🚨 CÓDIGO AZUL activado en ' + (location || 'UCI-03') + '. Equipo de respuesta movilizado.');
+  notify('🚨 CÓDIGO AZUL — ' + (location || 'UCI-03'), 'urgent');
+  addChatMsg('Dr. Shaun Murphy', '🩺', 'Diagnóstico Élite', '🚨 CÓDIGO AZUL en ' + (location || 'UCI-03') + '. He llegado al sitio. Iniciando protocolo RCP. ¿Aprueba Dr. Daniel?');
+  state.chatOpts = ['✅ Autorizar protocolo completo','📋 Revisar situación primero','🏥 Solicitar apoyo adicional'];
+  renderChatOpts();
+}
+
+function deactCB() {
+  state.codeBlue = false;
+  document.getElementById('cbo').classList.remove('active');
+  addNews('✅ Código Azul desactivado. Paciente estabilizado.');
+  notify('✅ Código Azul desactivado — Situación controlada', 'success');
+  addChatMsg('Dr. Shaun Murphy', '🩺', 'Diagnóstico Élite', 'Código Azul resuelto. Paciente estabilizado y trasladado a UCI. Gracias, Dr. Daniel.');
+}
+
+function cbSupport() {
+  notify('🩺 Apoyo adicional enviado — Dr. Andrews en camino', 'success');
+  const el = document.getElementById('cb-team');
+  if (el) el.innerHTML += '<div class="cbm"><span style="color:var(--green);">✅</span> Dr. Andrews — Cirujano de apoyo <span style="color:var(--yellow);margin-left:auto;">02:15</span></div>';
+}
+
+function playCBAlarm() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    let c = 0;
+    const iv = setInterval(() => {
+      if (!state.codeBlue || c > 20) { clearInterval(iv); return; }
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.connect(g); g.connect(ctx.destination);
+      o.frequency.value = c % 2 === 0 ? 880 : 660;
+      o.type = 'square'; g.gain.value = 0.2;
+      o.start(); o.stop(ctx.currentTime + 0.18); c++;
+    }, 400);
+  } catch(e) {}
+}
+
+// ========== DECISIONS ==========
+function triggerDecisionModal(p) {
+  const opts = [
+    { text: 'Enviar a ' + (p.status === 'crítico' ? 'UCI' : 'Hospitalización') + ' de inmediato', risk: 'Acción rápida. Consume cama disponible.' },
+    { text: 'Solicitar más estudios y análisis', risk: 'Mejor diagnóstico. Pequeña demora.' },
+    { text: 'Mantener en observación en Emergencias', risk: 'Ahorra recursos. Puede empeorar.' },
+  ];
+  document.getElementById('dec-title').textContent = 'NUEVO PACIENTE — ' + p.name;
+  document.getElementById('dec-body').innerHTML =
+    '<div style="background:rgba(0,200,212,0.08);border:1px solid var(--teal2);border-radius:8px;padding:12px;margin-bottom:14px;">' +
+    '<div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px;">' + p.name + ' — ' + p.age + ' años</div>' +
+    '<div style="font-size:11px;color:var(--yellow);">' + p.diagnosis + '</div>' +
+    '<div style="font-size:11px;margin-top:4px;">' + sbHTML(p.status) + '</div></div>' +
+    opts.map((o, i) =>
+      `<div class="dopt" onclick="handleDec(${i},'${p.id}')"><span class="donum">${i+1}</span><div><div class="dotxt">${o.text}</div><div class="dorisk">${o.risk}</div></div></div>`
+    ).join('');
+  document.getElementById('dec-mo').classList.add('active');
+}
+
+function handleDec(i, pid) {
+  closeDec();
+  const p = state.patients.find(x => x.id === pid);
+  if (i === 0) { notify('✅ Paciente asignado correctamente', 'success'); state.reputation = Math.min(100, state.reputation + 0.5); }
+  else if (i === 1) { notify('ℹ️ Paciente en estudios — espere resultados', ''); }
+  else { notify('⚠️ Paciente en observación — monitorear de cerca', 'warn'); }
+  addChatMsg('Dr. Marcus Andrews', '🔬', 'Cirujano Jefe', 'Entendido Dr. Daniel. ' + (p ? p.name : 'Paciente') + ' procesado según tu indicación.');
+}
+
+function closeDec() { document.getElementById('dec-mo').classList.remove('active'); }
+function closePM() { document.getElementById('pac-mo').classList.remove('active'); }
+
+// ========== PATIENT MODAL ==========
+function openPatient(id) {
+  const p = state.patients.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('pac-body').innerHTML =
+    '<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border);">' +
+    '<div style="width:46px;height:46px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:22px;">👤</div>' +
+    '<div><div style="font-size:17px;font-weight:700;color:var(--white);">' + p.name + '</div>' +
+    '<div style="font-size:10px;color:var(--muted);">' + p.id + ' — ' + p.age + ' años</div></div>' +
+    '<div style="margin-left:auto;">' + sbHTML(p.status) + '</div></div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">' +
+    '<div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Diagnóstico</div><div style="font-size:12px;color:var(--white);">' + p.diagnosis + '</div></div>' +
+    '<div><div style="font-size:9px;color:var(--muted);">Sala</div><div style="font-size:12px;color:var(--teal);">' + p.room + '</div></div>' +
+    '<div><div style="font-size:9px;color:var(--muted);">Doctor</div><div style="font-size:12px;">' + p.doctor + '</div></div>' +
+    '<div><div style="font-size:9px;color:var(--muted);">Ingreso</div><div style="font-size:12px;">' + (p.admitTime || '--') + '</div></div></div>' +
+    '<div style="background:rgba(0,200,212,0.06);border:1px solid var(--border);border-radius:6px;padding:10px;margin-bottom:10px;font-size:11px;">' +
+    '❤️ <strong>' + p.hr + '</strong> bpm &nbsp; 🫁 <strong>' + p.spo2 + '</strong>% &nbsp; 🩸 <strong>' + p.bp + '</strong> mmHg &nbsp; 🌡️ <strong>' + p.temp + '</strong>°C</div>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">' +
+    '<button class="btn bg" onclick="closePM()">✅ Dar Alta</button>' +
+    '<button class="btn by" onclick="improvePat(\'' + p.id + '\')">📈 Mejorar Estado</button>' +
+    '<button class="btn br" onclick="closePM()">✕ Cerrar</button></div>' +
+    (p.satisfaction < 40 ?
+    '<div style="background:rgba(255,214,0,0.08);border:1px solid var(--yellow);border-radius:8px;padding:12px;">' +
+    '<div style="font-size:12px;color:var(--yellow);font-weight:700;margin-bottom:8px;">😠 Paciente insatisfecho</div>' +
+    '<div style="font-size:11px;margin-bottom:8px;">"Llevo horas esperando. Esto es inaceptable."</div>' +
+    '<div style="display:flex;gap:6px;flex-wrap:wrap;">' +
+    '<button class="btn bg" style="font-size:9px;" onclick="handleComplaint(\'' + p.id + '\',\'apology\')">😊 Disculpas y prioridad</button>' +
+    '<button class="btn by" style="font-size:9px;" onclick="handleComplaint(\'' + p.id + '\',\'explain\')">ℹ️ Explicar situación</button>' +
+    '<button class="btn bt" style="font-size:9px;" onclick="handleComplaint(\'' + p.id + '\',\'patience\')">⏳ Pedir paciencia</button>' +
+    '</div></div>' : '');
+  document.getElementById('pac-mo').classList.add('active');
+}
+
+function handleComplaint(id, type) {
+  const p = state.patients.find(x => x.id === id);
+  if (!p) return;
+  if (type === 'apology') { p.satisfaction = Math.min(100, p.satisfaction + 30); notify('😊 ' + p.name + ' satisfecho', 'success'); }
+  else if (type === 'explain') { p.satisfaction = Math.min(100, p.satisfaction + 15); notify('ℹ️ ' + p.name + ' comprende la situación', ''); }
+  else { notify('⏳ ' + p.name + ' acepta esperar', 'warn'); }
+  closePM();
+}
+
+function improvePat(id) {
+  const p = state.patients.find(x => x.id === id);
+  if (p) { p.status = 'estable'; p.satisfaction = Math.min(100, p.satisfaction + 25); notify('📈 Mejoría: ' + p.name + ' — estado estable', 'success'); }
+  closePM();
+}
+
+function dischargePatient(p) {
+  state.patients = state.patients.filter(x => x.id !== p.id);
+  state.stats.discharges++;
+  addNews('✅ Alta médica: ' + p.name + ' — ' + p.diagnosis);
+  notify('✅ Alta: ' + p.name, 'success');
+}
+
+// ========== CLOCK ==========
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clk').textContent = now.toLocaleTimeString('es-ES');
+  document.getElementById('ddisp').textContent = now.toLocaleDateString('es-ES', { weekday: 'short', month: 'short', day: 'numeric' }).toUpperCase();
+  const h = now.getHours();
+  const autoNight = h >= 18 || h < 6;
+  const isNight = state.simShift === 'night' || (state.simShift === 'real' && autoNight);
+  state.shift = isNight ? 'night' : 'day';
+  document.getElementById('shift-badge').textContent = isNight ? '🌙 TURNO NOCTURNO' : '☀️ TURNO DIURNO';
+  document.getElementById('shift-badge').className = 'shift-b ' + (isNight ? 'shift-night' : 'shift-day');
+}
+
+function isNightShift() { return state.shift === 'night'; }
+
+// ========== HEADER ==========
+function updateHeader() {
+  const critical = state.patients.filter(p => p.status === 'crítico').length;
+  let alertTxt = '✅ CÓDIGO VERDE', alertColor = 'var(--green)';
+  document.getElementById('adot-v').className = 'adot v';
+  document.getElementById('adot-a').className = 'adot';
+  document.getElementById('adot-r').className = 'adot';
+  if (critical >= 5) {
+    alertTxt = '🔴 ALERTA ROJA'; alertColor = 'var(--red)';
+    document.getElementById('adot-v').className = 'adot v';
+    document.getElementById('adot-a').className = 'adot a';
+    document.getElementById('adot-r').className = 'adot r';
+  } else if (critical >= 2) {
+    alertTxt = '⚠ ALERTA AMARILLA'; alertColor = 'var(--yellow)';
+    document.getElementById('adot-v').className = 'adot v';
+    document.getElementById('adot-a').className = 'adot a';
+  }
+  const el = document.getElementById('alt-txt');
+  if (el) { el.textContent = alertTxt; el.style.color = alertColor; }
+  document.getElementById('rep-disp').textContent = '⭐ Reputación: ' + Math.round(state.reputation) + '/100';
+}
+
+// ========== DASHBOARD ==========
+function updateDashboard() {
+  const critical = state.patients.filter(p => p.status === 'crítico');
+  document.getElementById('d-pac').textContent = state.patients.length;
+  document.getElementById('d-crit').textContent = critical.length;
+  document.getElementById('d-beds').textContent = Math.max(0, 120 - state.patients.length);
+  const actAmb = state.ambulances.filter(a => a.status !== 'mantenimiento').length;
+  document.getElementById('d-amb').textContent = actAmb + '/6';
+
+  // Critical table
+  document.getElementById('dash-ct').innerHTML = critical.slice(0, 5).map(p =>
+    `<tr onclick="openPatient('${p.id}')"><td style="color:var(--white);font-weight:600;">${p.name}</td><td style="font-size:10px;">${p.diagnosis}</td><td>${sbHTML(p.status)}</td><td style="color:var(--teal);font-size:10px;">${p.room}</td><td><button class="btn bt" style="padding:2px 8px;" onclick="event.stopPropagation();openPatient('${p.id}')">Ver</button></td></tr>`
+  ).join('') || '<tr><td colspan="5" style="color:var(--muted);text-align:center;padding:14px;">Sin casos críticos ✅</td></tr>';
+
+  // Occ bars
+  const depts = [
+    { n: 'UCI', pct: Math.min(100, Math.round(critical.length / 16 * 100)) },
+    { n: 'Emergencias', pct: Math.min(100, Math.round(state.patients.filter(p => p.room.includes('Emergencias')).length / 20 * 100)) },
+    { n: 'General', pct: Math.min(100, Math.round(state.patients.length / 120 * 100)) },
+    { n: 'Quirófanos', pct: 30 + Math.floor(Math.random() * 40) }
+  ];
+  document.getElementById('occ-bars').innerHTML = depts.map(d =>
+    `<div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;margin-bottom:2px;"><span style="font-size:11px;">${d.n}</span><span style="font-size:10px;color:${d.pct > 85 ? 'var(--red)' : d.pct > 60 ? 'var(--yellow)' : 'var(--teal)'};">${d.pct}%</span></div><div class="pb"><div class="pf ${d.pct > 85 ? 'r' : d.pct > 60 ? 'y' : 't'}" style="width:${d.pct}%"></div></div></div>`
+  ).join('');
+
+  // Ambulances mini
+  document.getElementById('dash-ambs').innerHTML = state.ambulances.map(a =>
+    `<div style="display:flex;align-items:center;gap:8px;padding:5px;border-bottom:1px solid var(--border2);"><span>🚑</span><div style="flex:1;"><div style="font-size:10px;color:var(--white);font-weight:600;">${a.id}</div><div style="font-size:9px;color:var(--muted);">${a.location}</div></div><span style="font-size:9px;font-weight:700;color:${a.status==='disponible'?'var(--green)':a.status==='en_ruta'?'var(--yellow)':'var(--muted)'}">${a.status.toUpperCase()}</span></div>`
+  ).join('');
+
+  // Blood mini (critical only)
+  const critBlood = Object.entries(state.blood).filter(([,u]) => u < 15);
+  document.getElementById('dash-blood').innerHTML = critBlood.length
+    ? critBlood.slice(0, 4).map(([t, u]) => `<div style="display:flex;align-items:center;gap:8px;padding:5px;border-bottom:1px solid var(--border2);"><span style="font-family:'Orbitron',monospace;font-size:13px;color:var(--red);min-width:28px;">${t}</span><div class="pb" style="flex:1;"><div class="pf r" style="width:${Math.min(100,u*5)}%"></div></div><span style="font-size:10px;color:${u<8?'var(--red)':'var(--yellow)'};">${u}U</span></div>`).join('')
+    : '<div style="font-size:10px;color:var(--green);padding:8px;">✅ Todos en nivel adecuado</div>';
+
+  // Births mini
+  document.getElementById('dash-births').innerHTML = state.births.slice(0, 3).map(b =>
+    `<div style="display:flex;gap:8px;padding:5px;border-bottom:1px solid var(--border2);font-size:10px;"><span>👶</span><div><span style="color:var(--white);font-weight:600;">${b.baby}</span> — ${b.mother}<div style="color:var(--muted);font-size:9px;">${b.date} — ${b.weight}</div></div></div>`
+  ).join('') || '<div style="color:var(--muted);font-size:10px;padding:8px;">Sin nacimientos recientes</div>';
+}
+
+// ========== CRISIS SCREEN ==========
+const crisisEvents = [];
+function renderCrisis() {
+  // Build events from state
+  const events = [];
+  if (state.codeBlue) events.push({ prio: 1, icon: '🚨', text: 'CÓDIGO AZUL ACTIVO', type: 'cb' });
+  state.patients.filter(p => p.status === 'crítico').slice(0, 5).forEach(p => {
+    events.push({ prio: 2, icon: '🔴', text: 'Paciente crítico: ' + p.name + ' — ' + p.diagnosis, pid: p.id, type: 'pac' });
+  });
+  Object.entries(state.blood).filter(([,u]) => u < 8).forEach(([t]) => {
+    events.push({ prio: 2, icon: '🩸', text: 'Sangre ' + t + ' crítica', type: 'blood', bt: t });
+  });
+  if (state.ambulances.filter(a => a.status === 'disponible').length === 0) {
+    events.push({ prio: 3, icon: '🚑', text: 'Sin ambulancias disponibles', type: 'amb' });
+  }
+  events.sort((a, b) => a.prio - b.prio);
+
+  const el = document.getElementById('crisis-list');
+  if (!el) return;
+  el.innerHTML = events.length
+    ? events.map(e => `<div class="ci p${e.prio}" onclick="handleCrisisClick(${JSON.stringify(e).replace(/"/g,"'")})"><span style="font-size:20px;">${e.icon}</span><div style="flex:1;"><div style="font-size:12px;font-weight:700;color:var(--white);">${e.text}</div><div style="font-size:9px;color:var(--muted);">Prioridad ${e.prio} — Toca para gestionar</div></div><span style="padding:2px 7px;border-radius:4px;font-size:9px;font-weight:700;background:${e.prio===1?'rgba(255,45,74,0.2)':e.prio===2?'rgba(255,214,0,0.2)':'rgba(0,200,212,0.2)'};color:${e.prio===1?'var(--red)':e.prio===2?'var(--yellow)':'var(--teal)'};">${e.prio===1?'CRÍTICA':e.prio===2?'ALTA':'MEDIA'}</span></div>`).join('')
+    : '<div style="color:var(--muted);font-size:11px;padding:20px;text-align:center;">✅ Sin crisis activas. Hospital operativo con normalidad.</div>';
+
+  // Stats
+  document.getElementById('st-ingr').textContent = state.stats.admissions;
+  document.getElementById('st-alta').textContent = state.stats.discharges;
+  document.getElementById('st-cir').textContent = state.stats.surgeries;
+  document.getElementById('st-nac').textContent = state.stats.births;
+
+  // Action log
+  const alog = document.getElementById('alog');
+  if (alog && state.news.length) {
+    alog.innerHTML = state.news.slice(0, 12).map(n =>
+      `<div style="border-left:2px solid var(--teal2);padding:5px 8px;margin-bottom:6px;"><div style="font-size:9px;color:var(--teal);font-family:'Share Tech Mono',monospace;">${n.time}</div><div style="font-size:10px;color:var(--text);">${n.text}</div></div>`
+    ).join('');
+  }
+}
+
+function handleCrisisClick(e) {
+  if (e.type === 'cb') { deactCB(); return; }
+  if (e.type === 'pac' && e.pid) { openPatient(e.pid); return; }
+  if (e.type === 'blood' && e.bt) { state.blood[e.bt] = (state.blood[e.bt] || 0) + 20; updateBancoSangre(); notify('🩸 Sangre ' + e.bt + ' repuesta', 'success'); return; }
+  notify('✅ Evento gestionado', 'success');
+}
+
+// ========== PACIENTES ==========
+function updatePacientes() {
+  document.getElementById('full-pact').innerHTML = state.patients.slice(0, 60).map(p => {
+    const sc = p.status === 'crítico' ? 'critico' : p.status === 'observación' ? 'observacion' : 'estable';
+    const sat = p.satisfaction || 70;
+    return `<tr onclick="openPatient('${p.id}')">
+      <td style="font-size:9px;color:var(--teal);font-family:'Share Tech Mono',monospace;">${p.id}</td>
+      <td style="font-weight:600;color:var(--white);">${p.name}</td><td>${p.age}</td>
+      <td style="font-size:10px;color:var(--muted);">${p.diagnosis}</td>
+      <td>${sbHTML(p.status)}</td>
+      <td style="font-size:10px;color:var(--teal);">${p.room}</td>
+      <td style="font-size:10px;">${p.doctor}</td>
+      <td>${sat > 70 ? '😊' : sat > 40 ? '😐' : '😠'}</td>
+      <td><button class="btn bt" style="padding:2px 7px;font-size:9px;" onclick="event.stopPropagation();openPatient('${p.id}')">Ver</button></td>
+    </tr>`;
+  }).join('');
+  document.getElementById('total-pac').textContent = state.patients.length;
+}
+
+// ========== PERSONAL ==========
+function updatePersonal() {
+  document.getElementById('staff-full').innerHTML = state.staff.map(s => `
+    <div class="sr"><div class="sav">${s.icon || '👤'}</div>
+    <div style="flex:1;"><div class="sn">${s.name}</div><div class="sa">${s.role} — ${s.area}</div><div style="font-size:9px;color:var(--muted);">${s.status}</div></div>
+    <select onchange="moveStaff('${s.name}',this.value)" style="background:var(--panel);border:1px solid var(--border);color:var(--muted);padding:2px 6px;border-radius:4px;font-size:9px;outline:none;max-width:110px;">
+      <option value="">Mover a...</option>
+      ${['Emergencias','UCI','Quirófano 1','Quirófano 2','Quirófano 3','Radiología','Pediatría','Maternidad','Hospitalización'].map(a=>`<option>${a}</option>`).join('')}
+    </select>
+    <div class="sdd ${s.status==='Disponible'||s.status==='En ronda'?'sd-a':s.status.includes('cirugía')||s.status.includes('Atendiendo')?'sd-b':'sd-r'}"></div></div>`).join('');
+
+  document.getElementById('emp-panel').innerHTML = '<div style="text-align:center;padding:8px;"><div style="font-size:32px;margin-bottom:6px;">🩺</div><div style="font-size:14px;font-weight:700;color:var(--white);">Dr. Shaun Murphy</div><div style="font-size:11px;color:var(--teal);">Diagnóstico Élite</div><div style="font-size:11px;margin-top:6px;color:var(--yellow);">★ Rating: 99/100</div></div>';
+
+  const distrib = {};
+  state.staff.forEach(s => { distrib[s.area] = (distrib[s.area] || 0) + 1; });
+  document.getElementById('staff-areas').innerHTML = Object.entries(distrib).slice(0, 8).map(([a, n]) =>
+    `<div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:11px;">${a}</span><span style="font-size:11px;color:var(--teal);">${n} pers.</span></div><div class="pb mb8"><div class="pf t" style="width:${Math.min(100,n*15)}%"></div></div>`
+  ).join('');
+}
+
+function moveStaff(name, area) {
+  if (!area) return;
+  const s = state.staff.find(x => x.name === name);
+  if (s) { s.area = area; s.status = 'Trasladando a ' + area; notify('🔄 ' + name + ' → ' + area, ''); }
+}
+
+// ========== AMBULANCES ==========
+function updateAmbulances() {
+  const el = document.getElementById('amb-full');
+  if (!el) return;
+  const statusColor = { disponible: 'var(--green)', en_ruta: 'var(--yellow)', mantenimiento: 'var(--muted)' };
+  el.innerHTML = state.ambulances.map(a => `
+    <div class="card"><div class="card-hdr"><span class="ct">🚑 ${a.id}</span><span style="font-size:18px;">${a.status==='disponible'?'🟢':a.status==='en_ruta'?'🟡':'⚫'}</span></div>
+    <div class="cb"><div class="fb mb8"><span>Conductor</span><span style="font-size:11px;">${a.crew}</span></div>
+    <div class="fb mb8"><span>Ubicación</span><span style="font-size:11px;color:var(--teal);">${a.location}</span></div>
+    <div class="fb mb8"><span>Estado</span><span style="font-size:11px;font-weight:700;color:${statusColor[a.status]||'var(--muted)'};">${a.status.toUpperCase()}</span></div>
+    ${a.status==='disponible'?`<button class="btn bt" style="width:100%;" onclick="dispatchAmb('${a.id}')">🚑 Despachar</button>`:''}
+    </div></div>`).join('');
+}
+
+function dispatchAmb(id) {
+  const a = state.ambulances.find(x => x.id === id);
+  if (!a || a.status !== 'disponible') return;
+  a.status = 'en_ruta';
+  a.location = 'Zona ' + ['Norte','Sur','Centro'][Math.floor(Math.random()*3)];
+  addNews('🚑 ' + id + ' despachada por Dr. Daniel.');
+  notify('🚑 ' + id + ' despachada', '');
+  setTimeout(() => {
+    a.status = 'disponible'; a.location = 'Base Hospital';
+    const p = makePatient(); state.patients.unshift(p); state.stats.admissions++;
+    addNews('🚑 ' + id + ' llegó con paciente: ' + p.name);
+    notify('🚑 ' + id + ' llegó con ' + p.name, 'success');
+    updateAmbulances();
+    updateDashboard();
+  }, 12000 + Math.random() * 8000);
+  updateAmbulances();
+}
+
+// ========== MATERNIDAD ==========
+function updateMaternidad() {
+  const el = document.getElementById('birth-list');
+  if (!el) return;
+  el.innerHTML = state.births.slice(0, 15).map(b =>
+    `<div class="bc"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;font-weight:700;color:var(--white);">👶 ${b.baby}</span><span style="background:rgba(0,230,118,0.15);color:var(--green);border:1px solid rgba(0,230,118,0.3);padding:2px 7px;border-radius:4px;font-size:9px;font-weight:700;">${b.status}</span></div><div style="font-size:10px;color:var(--muted);">Madre: ${b.mother} | ${b.weight} | ${b.date}</div><div style="font-size:10px;color:var(--green);margin-top:2px;">✅ ${b.health}</div></div>`
+  ).join('') || '<div style="color:var(--muted);font-size:11px;padding:10px;">Sin nacimientos registrados aún.</div>';
+  const el2 = document.getElementById('birth-c');
+  if (el2) el2.textContent = state.births.length + ' nacimientos';
+  const bn = document.getElementById('bn'); if (bn) bn.textContent = state.births.filter(b => b.status === 'Normal').length;
+  const be = document.getElementById('be'); if (be) be.textContent = state.births.filter(b => b.status === 'Emergencia').length;
+  const bh = document.getElementById('bh'); if (bh) bh.textContent = state.births.filter(b => b.health && b.health.includes('ano')).length;
+}
+
+// ========== BANCO DE SANGRE ==========
+function updateBancoSangre() {
+  const el = document.getElementById('blood-g');
+  if (!el) return;
+  el.innerHTML = Object.entries(state.blood).map(([type, units]) => {
+    const crit = units < 10, low = units < 20;
+    return `<div class="bcard" style="${crit?'border-color:var(--red);background:rgba(255,45,74,0.08);':low?'border-color:var(--yellow);':''}">\
+<div class="btype">${type}</div><div class="bunits">${units}</div>\
+<div style="font-size:10px;color:${crit?'var(--red)':low?'var(--yellow)':'var(--green)'};">${crit?'⚠ CRÍTICO':low?'⚠ BAJO':'✅ OK'}</div>\
+<div class="pb" style="margin-top:6px;"><div class="pf ${crit?'r':low?'y':'g'}" style="width:${Math.min(100,units*2)}%"></div></div>\
+<button onclick="requestBlood('${type}')" style="margin-top:6px;background:rgba(255,45,74,0.12);border:1px solid var(--red2);color:var(--red);padding:2px 8px;border-radius:4px;font-size:9px;cursor:pointer;width:100%;">+ Solicitar</button></div>`;
+  }).join('');
+
+  const tlog = document.getElementById('tlog');
+  if (tlog && !tlog.innerHTML.trim()) tlog.innerHTML = '<div style="font-size:10px;color:var(--muted);">Sin transfusiones registradas hoy.</div>';
+}
+
+function requestBlood(bt) {
+  state.blood[bt] = (state.blood[bt] || 0) + 15;
+  notify('🩸 Sangre ' + bt + ' — 15 unidades recibidas', 'success');
+  updateBancoSangre();
+}
+
+// ========== ALIADOS ==========
+function updateAliados() {
+  document.getElementById('ally-list').innerHTML = ALLY_HOSPITALS.map(h =>
+    `<div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+      <span style="font-size:28px;">🏥</span>
+      <div style="flex:1;"><div style="font-weight:700;color:var(--white);font-size:12px;">${h}</div>
+      <div style="font-size:10px;color:var(--teal);font-family:'Share Tech Mono',monospace;">Activo — Conectado</div></div>
+      <button class="btn bt" style="font-size:9px;" onclick="contactAlly('${h}')">Contactar</button>
+    </div>`
+  ).join('');
+  const tlog = document.getElementById('translog');
+  if (tlog && !tlog.innerHTML.trim()) tlog.innerHTML = '<div style="font-size:10px;color:var(--muted);">Sin traslados registrados.</div>';
+}
+
+function contactAlly(name) {
+  notify('📞 Contactando ' + name, '');
+  addChatMsg('Dr. Marcus Andrews', '🔬', 'Cirujano Jefe', 'Dr. Daniel, en contacto con ' + name + '. ¿Qué recursos necesita compartir?');
+  state.chatOpts = ['Enviar paciente', 'Solicitar especialista', 'Compartir sangre'];
+  renderChatOpts();
+}
+
+// ========== LOGROS ==========
+function updateLogros() {
+  document.getElementById('ach-g').innerHTML = state.achievements.map(a =>
+    `<div class="ach ${a.unlocked ? 'un' : 'lk'}"><div class="ai">${a.icon}</div><div class="an">${a.name}</div><div class="ad">${a.desc}</div>${a.unlocked ? `<div class="adate">${a.date || 'Desbloqueado'}</div>` : '<div style="font-size:9px;color:var(--muted);">🔒 Bloqueado</div>'}</div>`
+  ).join('');
+}
+
+// ========== PERIÓDICO ==========
+function updatePeriodico() {
+  document.getElementById('paper-date').textContent = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: '2-digit', month: 'long' }).toUpperCase();
+  document.getElementById('news-list').innerHTML = state.news.slice(0, 25).map(n =>
+    `<div class="ni"><div class="nt">${n.time}</div><div class="ntx">${n.text}</div></div>`
+  ).join('') || '<div style="color:var(--muted);padding:16px;">Sin noticias.</div>';
+}
+
+function addNews(text) {
+  state.news.unshift({ text, time: tNow() });
+  if (state.news.length > 50) state.news.pop();
+}
+
+// ========== MONITORES ==========
+function updateMonitorSelect() {
+  const sel = document.getElementById('mon-sel');
+  if (!sel) return;
+  sel.innerHTML = state.patients.slice(0, 30).map(p => `<option value="${p.id}">${p.name} (${p.id})</option>`).join('');
+  updateMon();
+}
+
+function updateMon() {
+  const id = document.getElementById('mon-sel')?.value;
+  const p = state.patients.find(x => x.id === id) || state.patients[0];
+  if (!p) return;
+  document.getElementById('m-hr').textContent = p.hr || 72;
+  document.getElementById('m-spo2').textContent = p.spo2 || 98;
+  document.getElementById('m-bp').textContent = p.bp || '120/80';
+  document.getElementById('m-temp').textContent = p.temp || 36.8;
+}
+
+// ========== WAVE ANIMATIONS ==========
+function initWaves() { animWaves(); }
+function animWaves() {
+  state.waveT = (state.waveT || 0) + 0.12;
+  const t = state.waveT;
+  [['w-hr','#00e676'], ['w-spo2','#00c8d4'], ['w-bp','#ffd600'], ['w-temp','#ff2d4a']].forEach(([id, color], ki) => {
+    const canvas = document.getElementById(id);
+    if (!canvas || !canvas.offsetWidth) return;
+    canvas.width = canvas.offsetWidth; canvas.height = 55;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.shadowColor = color; ctx.shadowBlur = 6;
+    ctx.beginPath();
+    for (let x = 0; x < canvas.width; x++) {
+      const phase = (x / canvas.width) * Math.PI * 6 + t;
+      let y = 27;
+      if (ki === 0) { const p2 = phase % (Math.PI*2); y = p2 < 0.4 ? 27 - p2*55 : p2 < 0.7 ? 27 + (p2-0.4)*55-22 : 27 + Math.sin(p2)*2; }
+      else if (ki === 1) y = 27 + Math.sin(phase) * 16 + Math.sin(phase * 2) * 3;
+      else if (ki === 2) { const p2 = phase % (Math.PI*2); y = 27 - (p2 < 1.5 ? Math.sin(p2 * Math.PI / 1.5) * 18 : 0); }
+      else y = 27 + Math.sin(phase * 0.4) * 6 + Math.sin(phase * 1.2) * 3;
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  });
+}
+
+// ========== CHAT ==========
+function addChatMsg(sender, icon, role, text) {
+  state.messages.push({ sender, icon, role, text, time: tNow() });
+  if (state.messages.length > 60) state.messages.shift();
+  if (document.getElementById('sec-chat').classList.contains('active')) updateChat();
+}
+
+function updateChat() {
+  const el = document.getElementById('chat-msgs');
+  if (!el) return;
+  el.innerHTML = state.messages.slice(-30).map(m =>
+    `<div class="cmsg ${m.sender === 'Dr. Daniel' ? 'dan' : ''}">
+      <div class="cav">${m.icon || m.sender[0]}</div>
+      <div class="cbub"><div class="csen">${m.sender} — ${m.role || ''}</div><div class="ctxt">${m.text}</div><div class="ctm">${m.time}</div></div>
+    </div>`
+  ).join('');
+  el.scrollTop = el.scrollHeight;
+
+  // On-duty
+  const od = document.getElementById('on-duty');
+  if (od) od.innerHTML = state.staff.slice(0, 10).map(s =>
+    `<div style="display:flex;align-items:center;gap:8px;padding:5px;border-bottom:1px solid var(--border2);">
+      <span style="font-size:16px;">${s.icon || '👤'}</span>
+      <div style="flex:1;"><div style="font-size:11px;font-weight:600;color:var(--white);">${s.name}</div><div style="font-size:9px;color:var(--muted);">${s.area}</div></div>
+      <div class="sdd ${s.status === 'Disponible' ? 'sd-a' : 'sd-b'}"></div>
+    </div>`
+  ).join('');
+
+  // Call log
+  const cl = document.getElementById('call-log');
+  if (cl && !cl.innerHTML.trim()) cl.innerHTML = '<div style="color:var(--muted);font-size:10px;">Sin llamadas registradas.</div>';
+}
+
+function renderChatOpts() {
+  const el = document.getElementById('chat-opts');
+  if (!el) return;
+  el.innerHTML = state.chatOpts.length
+    ? state.chatOpts.map(o => `<button class="co" onclick="chatOptClick('${o.replace(/'/g,"\\'")}'">${o}</button>`).join('')
+    : '';
+}
+
+function chatOptClick(opt) {
+  state.messages.push({ sender: 'Dr. Daniel', icon: '👑', role: 'Administrador General', text: opt, time: tNow() });
+  state.chatOpts = [];
+  updateChat();
+  renderChatOpts();
+  setTimeout(() => {
+    const r = ['Entendido, Dr. Daniel.','Perfecto, procedemos de inmediato.','Recibido. Actuando en consecuencia.','Confirmado. Gracias por la directriz.'];
+    const adv = ADVISORS[Math.floor(Math.random() * ADVISORS.length)];
+    addChatMsg(adv.name, adv.icon, adv.role, r[Math.floor(Math.random() * r.length)]);
+  }, 1000 + Math.random() * 1500);
+}
+
+function autoChatMsg() {
+  const msgs = [
+    { who: 0, text: 'Dr. Daniel, UCI al ' + Math.floor(70 + Math.random()*25) + '% de ocupación. ¿Habilitamos camas adicionales?' },
+    { who: 1, text: 'Cirugía de ' + (state.patients[0]?.name || 'paciente') + ' programada para esta tarde. Quirófano listo.' },
+    { who: 2, text: 'Emergencias recibió ' + Math.floor(2 + Math.random()*5) + ' pacientes en la última hora.' },
+    { who: 0, text: 'He detectado un caso que requiere diagnóstico especializado. ¿Podría revisarlo, Dr. Daniel?' },
+    { who: 1, text: 'Recomiendo reforzar el turno nocturno con un cirujano adicional dada la actividad actual.' },
+  ];
+  const m = msgs[Math.floor(Math.random() * msgs.length)];
+  const adv = ADVISORS[m.who];
+  addChatMsg(adv.name, adv.icon, adv.role, m.text);
+  const opts = m.text.includes('habilitamos') || m.text.includes('camas')
+    ? ['✅ Sí, habilitar camas','❌ No por ahora','ℹ️ Dame más información']
+    : m.text.includes('cirugía') || m.text.includes('quirófano')
+    ? ['✅ Autorizar cirugía','⏳ Posponer una hora','📋 Revisar expediente']
+    : ['✅ Confirmado','ℹ️ Más detalles','⚠️ Escalar protocolo'];
+  state.chatOpts = opts;
+  renderChatOpts();
+}
+
+function sendMsg() {
+  const inp = document.getElementById('chat-in');
+  const text = inp.value.trim();
+  if (!text) return;
+  state.messages.push({ sender: 'Dr. Daniel', icon: '👑', role: 'Administrador General', text, time: tNow() });
+  state.chatOpts = [];
+  inp.value = '';
+  updateChat();
+  renderChatOpts();
+  setTimeout(() => {
+    const r = ['Entendido, Dr. Daniel. Procedo de inmediato.','Recibido. El equipo está al tanto.','Confirmado. Le informaré del resultado.','Perfecto, ejecutando según sus instrucciones.'];
+    const adv = ADVISORS[Math.floor(Math.random() * ADVISORS.length)];
+    addChatMsg(adv.name, adv.icon, adv.role, r[Math.floor(Math.random() * r.length)]);
+  }, 1200 + Math.random() * 1500);
+}
+
+// ========== SANDBOX ==========
+function sbEvent(evt) {
+  switch (evt) {
+    case 'code_blue': activateCB('UCI-SANDBOX'); break;
+    case 'mass':
+      for (let i = 0; i < 10; i++) {
+        const p = makePatient(); p.status = 'crítico'; state.patients.unshift(p); state.stats.admissions++;
+      }
+      notify('💥 ACCIDENTE MASIVO — 10 pacientes críticos ingresados', 'urgent');
+      addChatMsg('Dra. Audrey Braun', '🏥', 'Cirujana Trauma', 'Dr. Daniel, accidente masivo confirmado. Activando protocolo de emergencia múltiple. Habilitando sala temporal.');
+      addNews('💥 ACCIDENTE MASIVO — 10 pacientes ingresados en emergencias.');
+      updateDashboard(); updatePacientes(); break;
+    case 'birth': addBirth(Math.random() > 0.5); break;
+    case 'newpac': { const p = makePatient(); p.status='crítico'; state.patients.unshift(p); state.stats.admissions++; triggerDecisionModal(p); notify('🚑 Nuevo paciente de emergencia crítico','urgent'); break; }
+    case 'blood': state.blood['O-'] = 3; updateBancoSangre(); notify('🩸 Sangre O- CRÍTICA — Solo 3 unidades', 'urgent'); break;
+    case 'vip':
+      const vips = ['El Alcalde de la ciudad','Un futbolista internacional','Un empresario reconocido','Un diplomático extranjero'];
+      const v = vips[Math.floor(Math.random()*vips.length)];
+      notify('👑 PACIENTE VIP: ' + v, 'warn');
+      addChatMsg('Dr. Marcus Andrews', '🔬', 'Cirujano Jefe', 'Dr. Daniel, ' + v + ' ha llegado al hospital. ¿Activamos protocolo VIP?');
+      state.chatOpts = ['✅ Activar protocolo VIP','🏥 Tratamiento estándar','📋 Asignar médico de élite'];
+      renderChatOpts();
+      addNews('👑 PACIENTE VIP: ' + v + ' ingresó al hospital.'); break;
+    case 'storm': document.getElementById('wx-badge').textContent = '⛈️ Tormenta'; notify('⛈️ Tormenta — Mayor riesgo de accidentes', 'warn'); setTimeout(() => document.getElementById('wx-badge').textContent = '☀️ Despejado', 15000); break;
+    case 'ally': allyRequest(); break;
+  }
+}
+
+function simSh(shift) {
+  state.simShift = shift;
+  updateClock();
+  notify('⏰ Turno simulado: ' + (shift === 'day' ? 'Diurno' : shift === 'night' ? 'Nocturno' : 'Hora real'), '');
+}
+
+// ========== SECTION NAVIGATION ==========
+function showSec(sec, btn) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-' + sec).classList.add('active');
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (sec === 'pacientes') updatePacientes();
+  if (sec === 'personal') updatePersonal();
+  if (sec === 'ambulancias') updateAmbulances();
+  if (sec === 'maternidad') updateMaternidad();
+  if (sec === 'sangre') updateBancoSangre();
+  if (sec === 'aliados') updateAliados();
+  if (sec === 'logros') updateLogros();
+  if (sec === 'periodico') updatePeriodico();
+  if (sec === 'monitores') { updateMonitorSelect(); initWaves(); }
+  if (sec === 'chat') { updateChat(); renderChatOpts(); }
+  if (sec === 'crisis') renderCrisis();
+}
+
+// ========== NOTIFY ==========
+function notify(text, type) {
+  const wrap = document.getElementById('nwrap');
+  const el = document.createElement('div');
+  el.className = 'notif ' + (type || '');
+  el.innerHTML = `<div class="ntit">${text}</div>`;
+  el.onclick = () => el.remove();
+  wrap.appendChild(el);
+  setTimeout(() => { if (el.parentNode) el.remove(); }, 5500);
+  while (wrap.children.length > 6) wrap.removeChild(wrap.firstChild);
+}
+
+// ========== HELPERS ==========
+function tNow() { return new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }); }
+function sbHTML(s) {
+  const m = { 'crítico': '🔴 Crítico', 'observación': '🟡 Observación', 'estable': '🟢 Estable' };
+  const c = { 'crítico': 'critico', 'observación': 'observacion', 'estable': 'estable' };
+  return `<span class="sb ${c[s] || 'estable'}">${m[s] || s}</span>`;
+}
+
+document.getElementById('chat-in').addEventListener('keydown', e => { if (e.key === 'Enter') sendMsg(); });
+window.addEventListener('load', init);
+</script>
+</body>
+</html>
